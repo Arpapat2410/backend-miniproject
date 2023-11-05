@@ -6,6 +6,10 @@ const productSchema = mongoose.Schema(
             type : String,
             require : true
         },
+        league : {
+            type : String,
+            require : true
+        },
         type : {
             type : String,
             require : true
