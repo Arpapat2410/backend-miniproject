@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose') //นำเข้าไลบรารี Mongoose เพื่อทำการเชื่อมต่อและจัดการ MongoDB 
 
-const productSchema = mongoose.Schema(
+const productSchema = mongoose.Schema( //Schema ระบุลักษณะและประเภทของข้อมูลที่จะถูกเก็บใน MongoDB.
     {
-        name : {
+        name : { //คือ properties ของ Schema แต่ละ property มี type และ require
             type : String,
             require : true
         },
@@ -25,7 +25,7 @@ const productSchema = mongoose.Schema(
         }
     },
     {
-        //สร้างตารางเวลาที่ข้อมูลบันทึกกับอัพเดต
+        //เป็น option ที่เพิ่ม timestamp ในแต่ละ document เมื่อถูกสร้างและแก้ไข
         timestamps: true
     }
 )

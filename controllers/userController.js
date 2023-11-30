@@ -9,6 +9,7 @@ exports.signup = (req, res) => {
         password: bcrypt.hashSync(req.body.password, 8),
     }).then(user => {
         if (req.body.role) {
+            // หา role ที่ระบุจากฐานข้อมูล
             Role.findAll({
                 where: {
                     name: {
@@ -16,17 +17,18 @@ exports.signup = (req, res) => {
                     },
                 },
             }).then(roles => {
+                // กำหนดบทบาทให้กับผู้ใช้
                 user.setRoles(roles).then(() => {
                     res.send({
-                        message: "User was registered suxxessfully!"
+                        message: "User was registered successfully!"
                     });
                 });
             });
         } else {
-            //User roleid =1 (user)
+            // หากไม่ระบุ User roleid =1 (user)
             user.setRoles([1]).then(() => {
                 res.send({
-                    message: "User was registered suxxessfully!"
+                    message: "User was registered successfully!"
                 });
             });
         }
