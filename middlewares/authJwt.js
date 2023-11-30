@@ -28,7 +28,6 @@ isAdmin = (req, res, next) => {
             res.status(500).send({ message: err });
             return;
         }
-
         Role.find(
             {
                 _id: { $in: user.roles },
@@ -38,13 +37,11 @@ isAdmin = (req, res, next) => {
                     res.status(500).send({ message: err });
                     return;
                 }
-
                 for (let i = 0; i < roles.length; i++) {
                     if (roles[i].name === "admin") {
                         return next(); // ส่ง next() ออกไปหลังจากตรวจสอบบทบาท
                     }
                 }
-
                 res.status(403).send({ message: "Require Admin Role!" });
             }
         );
@@ -57,7 +54,6 @@ isModerator = (req, res, next) => {
             res.status(500).send({ message: err });
             return;
         }
-
         Role.find(
             {
                 _id: { $in: user.roles },
@@ -67,13 +63,11 @@ isModerator = (req, res, next) => {
                     res.status(500).send({ message: err });
                     return;
                 }
-
                 for (let i = 0; i < roles.length; i++) {
                     if (roles[i].name === "moderator") {
                         return next(); // ส่ง next() ออกไปหลังจากตรวจสอบบทบาท
                     }
                 }
-
                 res.status(403).send({ message: "Require Moderator Role!" });
             }
         );
